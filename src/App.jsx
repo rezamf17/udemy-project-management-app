@@ -18,7 +18,7 @@ function App() {
 
   function componentRender () {
     if (route.route == 'create') {
-      return <CreateProject />
+      return <CreateProject create={handleCreate} />
     }else{
       return <NoProject create={handleCreate} />
     }
