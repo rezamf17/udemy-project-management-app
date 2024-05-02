@@ -16,9 +16,18 @@ function App() {
     console.log('handle create ',data);
   }
 
+  function handleDataForm(data) {
+    setRoute((prevRoute) => ({
+      ...prevRoute,
+      route: 'create',
+      project: prevRoute.project ? [...prevRoute.project, data] : [data]
+    }));
+    console.log('handle data form ',route);
+  }
+
   function componentRender () {
     if (route.route == 'create') {
-      return <CreateProject create={handleCreate} />
+      return <CreateProject create={handleCreate} dataForm={handleDataForm} />
     }else{
       return <NoProject create={handleCreate} />
     }
