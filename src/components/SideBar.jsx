@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function SideBar() {
+export default function SideBar({listProject}) {
+
+  console.log('listProject',listProject);
   return (
     <aside className="w-64 bg-gray-800 text-white h-screen">
       <div className="p-4">
@@ -13,26 +15,15 @@ export default function SideBar() {
               </button>
             </a>
           </li>
-          <li className="py-2 hover:bg-gray-700">
-            <a href="#" className="block px-4">
-              Menu Item 2
-            </a>
-          </li>
-          <li className="py-2 hover:bg-gray-700">
-            <a href="#" className="block px-4">
-              Menu Item 3
-            </a>
-          </li>
-          <li className="py-2 hover:bg-gray-700">
-            <a href="#" className="block px-4">
-              Menu Item 4
-            </a>
-          </li>
-          <li className="py-2 hover:bg-gray-700">
-            <a href="#" className="block px-4">
-              Menu Item 5
-            </a>
-          </li>
+          {
+            listProject.map((items, index) => (
+              <li key={index} className="py-2">
+                <a href="#" className="block px-4">
+                  <p className="text-gray-400">{items[0].title}</p>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
     </aside>

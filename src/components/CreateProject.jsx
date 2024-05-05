@@ -15,7 +15,7 @@ export default function CreateProject({ create, dataForm }) {
     });
   };
 
-  function handleCreate() {
+  function handleBack() {
     return create("");
   }
 
@@ -24,7 +24,7 @@ export default function CreateProject({ create, dataForm }) {
 		let formData = []
 		formData.push(inputForm)
 		dataForm(formData)
-		console.log(inputForm);
+		// console.log('inputForm',inputForm);
 	}
   return (
     <div className="w-3/4">
@@ -37,7 +37,7 @@ export default function CreateProject({ create, dataForm }) {
             Save
           </button>
           <button
-            onClick={handleCreate}
+            onClick={handleBack}
             className="flex m-1 items-center justify-center px-4 py-2 bg-slate-200 text-black rounded-md hover:bg-slate-300 focus:outline-none focus:bg-gray-700"
           >
             Cancel

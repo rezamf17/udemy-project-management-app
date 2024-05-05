@@ -19,7 +19,7 @@ function App() {
   function handleDataForm(data) {
     setRoute((prevRoute) => ({
       ...prevRoute,
-      route: 'create',
+      route: '',
       project: prevRoute.project ? [...prevRoute.project, data] : [data]
     }));
     console.log('handle data form ',route);
@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="flex">
-      <SideBar />
+      <SideBar listProject={route.project} />
       <div className="flex-1 flex justify-center items-center">
         {componentRender()}
       </div>
