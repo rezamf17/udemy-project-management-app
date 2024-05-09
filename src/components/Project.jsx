@@ -1,6 +1,12 @@
-export default function Project({ profile }) {
+import AddTask from "./AddTask"
+
+export default function Project({ profile, job }) {
 
 	console.log('profile', profile);
+	function handleJob(data) {
+		job(data)
+		console.log('job', data)
+	}
 	return (
 		<div className="w-3/4">
 			<div className="flex justify-between">
@@ -15,6 +21,8 @@ export default function Project({ profile }) {
 			</div>
 			<br />
 			<hr />
+			<AddTask job={handleJob} dataForm={profile[0]} />
+
 		</div>
 	)
 }

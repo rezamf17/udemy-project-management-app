@@ -3,7 +3,7 @@ import React from "react";
 export default function SideBar({listProject, route, chooseProject}) {
 
   function handleRouteProject(items) {
-    // console.log('choose',items);
+    console.log('choose',items);
     chooseProject(items)
     return route("project")
   }
