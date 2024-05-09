@@ -1,7 +1,7 @@
 import Input from "./Input.jsx"
 import { useState } from "react"
 
-export default function AddTask({ job }) {
+export default function AddTask({ job, dataForm }) {
 	const [task, setTask] = useState("")
 	const [arrayTodo, setArrayTodo] = useState([]);
 	let index = 0
@@ -31,8 +31,8 @@ export default function AddTask({ job }) {
 				<a href="#" className="flex-auto text-gray-600 m-5 mt-7 font-bold" onClick={addTask}>Add Task</a>
 			</div>
 			{
-				arrayTodo.task && arrayTodo.task.length > 0 ? (
-					arrayTodo.task.map((result) => (
+				dataForm.task && dataForm.task.length > 0 ? (
+					dataForm.task.map((result) => (
 						<div className="flex justify-between bg-slate-100 p-5" key={result.id}>
 							<div className="">{result.todo}</div>
 							<div className="">Clear</div>
