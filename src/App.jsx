@@ -19,6 +19,18 @@ function App() {
     console.log('handle create ', data);
   }
 
+  function handleDelete(data) {
+    handleCreate('')
+    const updatedProject = route.project.filter(projectItem => projectItem !== data);
+
+    setRoute(prevRoute => ({
+      ...prevRoute,
+      project: updatedProject
+    }));
+  
+    console.log('handle delete ', data);
+  }
+
   function handleDataForm(data) {
     setRoute((prevRoute) => ({
       ...prevRoute,
@@ -42,27 +54,34 @@ function App() {
     setChooseProject(updatedChooseProject);
   }
 
-  function componentRender() {
-    if (route.route == 'create') {
-      return <CreateProject create={handleCreate} dataForm={handleDataForm} />
-    } else if (route.route == 'project') {
-      return <Project profile={chooseProject} job={chooseJob} />
-    } else {
-      return <NoProject create={handleCreate} />
-    }
+  function handleDeleteProfile() {
+    setChooseProject([])
+    // handleCreate('')
+    console.log('route after delete project', route)
+    console.log('choose project',chooseProject)
   }
 
+  
   function handleRouteProject(data) {
     setRoute((prevRoute) => ({
       ...prevRoute,
       route: data
     }))
   }
-
+  
   function handleChooseProject(data) {
     setChooseProject(data)
   }
-
+  
+  function componentRender() {
+    if (route.route == 'create') {
+      return <CreateProject create={handleCreate} dataForm={handleDataForm} />
+    } else if (route.route == 'project') {
+      return <Project profile={chooseProject} job={chooseJob} deleteProfile={handleDelete} />
+    } else {
+      return <NoProject create={handleCreate} />
+    }
+  }
   return (
     <div className="flex">
       <SideBar listProject={route.project} route={handleRouteProject} chooseProject={handleChooseProject} />

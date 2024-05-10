@@ -32,8 +32,8 @@ export default function AddTask({ job, dataForm }) {
 			</div>
 			{
 				dataForm.task && dataForm.task.length > 0 ? (
-					dataForm.task.map((result) => (
-						<div className="flex justify-between bg-slate-100 p-5" key={result.id}>
+					dataForm.task.map((result, index) => (
+						<div className="flex justify-between bg-slate-100 p-5" key={index}>
 							<div className="">{result.todo}</div>
 							<div className="">Clear</div>
 						</div>

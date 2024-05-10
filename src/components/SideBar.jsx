@@ -27,7 +27,7 @@ export default function SideBar({listProject, route, chooseProject}) {
             listProject.map((items, index) => (
               <li key={index} className="py-2">
                 <a href="#" className="block px-4 hover:bg-gray-700 justify-center" onClick={() => handleRouteProject(items)}>
-                  <p className="text-gray-400">{items[0].title}</p>
+                  { items && <p className="text-gray-400">{items[0].title}</p>}
                 </a>
               </li>
             ))
