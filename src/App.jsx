@@ -6,7 +6,7 @@ import { useState } from 'react'
 function App() {
   const [route, setRoute] = useState({
     route: '',
-    project: []
+    project: [],
   })
   const [chooseProject, setChooseProject] = useState([])
 
@@ -41,17 +41,24 @@ function App() {
   }
 
   function chooseJob(data) {
-    console.log('choose data', data)
-    // Salin array chooseProject
-    const updatedChooseProject = [...chooseProject];
+ console.log('choose data', data);
 
-    // Tambahkan key baru berbentuk array object
-    updatedChooseProject.forEach(project => {
-      project.task = data;
-    });
+  // Salin array chooseProject dan perbarui objek yang sesuai
+  const updatedChooseProject = chooseProject.map(project => {
+    // Jika objek tidak berubah, kembalikan objek asli
+    if (project.id !== data.id) {
+      return project;
+    }
 
-    // Perbarui state chooseProject
-    setChooseProject(updatedChooseProject);
+    // Jika objek berubah, buat salinan baru dan tambahkan properti task baru
+    return {
+      ...project,
+      task: data
+    };
+  });
+
+  // Perbarui state chooseProject dengan array yang telah diperbarui
+  setChooseProject(updatedChooseProject);
   }
 
   function handleDeleteProfile() {
@@ -68,11 +75,10 @@ function App() {
       route: data
     }))
   }
-  
+  console.log('route', route)
   function handleChooseProject(data) {
     setChooseProject(data)
   }
-  
   function componentRender() {
     if (route.route == 'create') {
       return <CreateProject create={handleCreate} dataForm={handleDataForm} />

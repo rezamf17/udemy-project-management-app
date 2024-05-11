@@ -5,7 +5,7 @@ export default function Project({ profile, job, deleteProfile }) {
 
 	function handleJob(data) {
 		job(data)
-		console.log('job', data)
+		console.log('job in project', data)
 	}
 	console.log('profile in project'	, profile)
 	function handleDeleteProfile() {

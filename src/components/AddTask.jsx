@@ -4,19 +4,40 @@ import { useState } from "react"
 export default function AddTask({ job, dataForm }) {
 	const [task, setTask] = useState("")
 	const [arrayTodo, setArrayTodo] = useState([]);
-	let index = 0
+	const [index, setIndex] = useState(1);
 
 	function addTask() {
-		console.log('add task', task)
-		arrayTodo.push({
-			id: index++,
-			todo: task
-		})
+    // Salin arrayTodo saat ini
+    const updatedArrayTodo = [...arrayTodo];
 
+    // Tambahkan tugas baru ke salinan arrayTodo
+    updatedArrayTodo.push({
+      id: index,
+      todo: task
+    });
+
+    // Perbarui state arrayTodo dengan salinan yang telah diperbarui
+    setArrayTodo(updatedArrayTodo);
+
+    // Perbarui index untuk tugas berikutnya
+    setIndex(prevIndex => prevIndex + 1);
+
+    // Setel task ke string kosong untuk membersihkan input
+    setTask('');
+
+    // Panggil fungsi job dengan arrayTodo yang baru
+    job(updatedArrayTodo);
+
+    console.log('todo', updatedArrayTodo);
+	}
+
+	function clearTask(data, index){
+		// console.log('clear data', data);
+		// console.log('index clear data', index);
+		arrayTodo.splice(index, 2)
+		console.log('arrayTodo clear data', arrayTodo);
 		setArrayTodo([...arrayTodo]);
-		setTask('')
-		job(arrayTodo)
-		console.log('todo', arrayTodo)
+		// setArrayTodo(prevArrayTodo => prevArrayTodo.filter(item => item.id !== data));
 	}
 
 	const handleInputChange = (event) => {
@@ -35,7 +56,9 @@ export default function AddTask({ job, dataForm }) {
 					dataForm.task.map((result, index) => (
 						<div className="flex justify-between bg-slate-100 p-5" key={index}>
 							<div className="">{result.todo}</div>
-							<div className="">Clear</div>
+							<div className="" >
+								<a href="#"  onClick={() => clearTask(result.id, index)}>Clear</a>
+							</div>
 						</div>
 					))
 				) : (
